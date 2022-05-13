@@ -1,0 +1,8 @@
+{
+    "baseUrl": "https://cypress.vivifyscrum-stage.com/",
+    "env": {
+        "login_email": "dan.janjic@gmail.com",
+        "login_password": "ovojesifra33",
+        "api_url": "https://cypress-api.vivifyscrum-stage.com/api/v2/login"
+    }
+}
