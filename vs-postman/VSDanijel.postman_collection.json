@@ -32,7 +32,55 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"{{email}}\",\n    \"password\": \"{{password}}\",\n    \"g-recaptcha-response\": \"\"\n}",
+					"raw": "{\n    \"email\": \"{{userTwoEmail}}\",\n    \"password\": \"{{userTwoPassword}}\",\n    \"g-recaptcha-response\": \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/api/v2/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v2",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vivify-scrum-login-user-two",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"pm.environment.set(\"userTwotoken\", jsonData.token);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is more than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.above(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"{{userTwoEmail}}\",\n    \"password\": \"{{userTwoPassword}}\",\n    \"g-recaptcha-response\": \"\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -33,3 +33,20 @@ Cypress.Commands.add('validatePageHeader', (matchingString) => {
 Cypress.Commands.add('validatePageUrl', (matchingString) => {
     cy.url().should('include', matchingString)
 })
+
+//-- Login using backend --
+
+Cypress.Commands.add('loginWithBackend', () => {
+    cy.request({
+        method: 'POST',
+        url: Cypress.env('api_url'),
+        body: {
+            email: Cypress.env('login_email'),
+            password: Cypress.env('login_password')
+        }
+    }).its('body').then(response => {
+        window.localStorage.setItem('user_id', response.user.id);
+        window.localStorage.setItem('user', response.user);
+        window.localStorage.setItem('token', response.token);
+    })
+})
